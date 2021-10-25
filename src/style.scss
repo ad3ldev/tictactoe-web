@@ -1,0 +1,25 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+html,
+body {
+	height: 100%;
+}
+main {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.board {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	aspect-ratio: 1/1;
+	button {
+		width: 30vmin;
+		aspect-ratio: 1/1;
+		font-size: clamp(16px, 20vmin, 100rem);
+	}
+}
