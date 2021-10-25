@@ -16,9 +16,13 @@ main {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	aspect-ratio: 1/1;
-	button {
+	.btn {
 		width: 30vmin;
 		aspect-ratio: 1/1;
 		font-size: clamp(16px, 20vmin, 100rem);
 	}
+}
+
+#end .show {
+	visibility: visible;
 }

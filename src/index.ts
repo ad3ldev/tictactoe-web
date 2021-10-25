@@ -2,7 +2,10 @@ import "./style.scss"
 
 let player:boolean = true;
 let turns = 0;
-const buttons = document.querySelectorAll("button")!;
+let done = false;
+let result:string = "";
+const buttons = document.querySelectorAll(".btn")!;
+const end = <HTMLButtonElement> document.querySelector("#end")
 
 let board = [["","",""],["","",""],["","",""]];
 buttons.forEach(button => {
@@ -11,22 +14,29 @@ buttons.forEach(button => {
         button.disabled = true
         let index : string = button.id.split("btn")[1];
         check(Number(index[0]),Number(index[1]), button.innerHTML);
+        if(done){
+            end.innerHTML = result;
+            end.hidden = false;
+            end.addEventListener("click", ()=>{
+                clearGrid()
+            });
+        }
     });
 });
 
 function check(x:number,y:number, symbol:string) {
     board[x][y] = symbol;
     if(horizontal(x)){
-        win();
+        result = win();
     }else if(vertical(y)){
-        win()
+        result =win()
     }else if(diagonal(x,y)){
-        win()
+        result =win()
     }else{
         player =  !player;
         turns++;
         if(turns==9){
-			draw();
+			result = draw();
 		}
     }
 }
@@ -54,13 +64,13 @@ function diagonal(x: number, y: number) {
 }
 
 function win() {
-    console.log(`${player?"X":"O"} WON`)
-    clearGrid();
+    done = true;
+    return (`${player?"X":"O"} WON`)
 }
 
 function draw() {
-    console.log(`DRAW`)
-    clearGrid();
+    done = true;
+    return(`DRAW`)
 }
 
 function clearGrid(){
@@ -71,4 +81,7 @@ function clearGrid(){
     });
     player = true;
 	turns = 0;
+    done = false;
+    result = ""
+    end.hidden = true;
 }
