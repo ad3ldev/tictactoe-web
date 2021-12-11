@@ -1,4 +1,5 @@
 import "./style.scss"
+import * as miniMax from "./minimax"  
 
 let player:boolean = true;
 let turns = 0;
@@ -8,10 +9,19 @@ const buttons = document.querySelectorAll(".btn")!;
 const end = <HTMLButtonElement> document.querySelector("#end")
 
 let board = [["","",""],["","",""],["","",""]];
+function drawOnBoard(){
+    buttons.forEach(button=>{
+        let place = button.id.split("btn")[1];
+        button.innerHTML =  board[Number(place[0])][Number(place[1])];
+        if(button.innerHTML!=""){
+            button.disabled = true;
+        }
+    });
+}
 buttons.forEach(button => {
     button.addEventListener("click", () =>{
         button.innerHTML =  player?"X":"O";
-        button.disabled = true
+        button.disabled = true;
         let index : string = button.id.split("btn")[1];
         check(Number(index[0]),Number(index[1]), button.innerHTML);
         if(done){
