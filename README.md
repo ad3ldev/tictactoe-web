@@ -8,7 +8,7 @@ A basic TicTacToe game.
 
 ## Technologies
 
-HTML, CSS, and TypeScript, NodeJS and Yarn as the package manager, and snowpack as my bundler since I will be using node modules and dependencies.
+HTML, CSS, and JavaScript, NodeJS and Yarn as the package manager, and snowpack as my bundler since I will be using node modules and dependencies.
 For the CSS, I am using Sass because it extends the functionalities and capabilities of CSS.
 
 ## Algorithms
