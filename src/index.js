@@ -2,9 +2,10 @@ import "./style.scss";
 
 let COOP = false;
 
+let piece;
 let player = true;
-let HUMAN = 1;
-let AI = -1;
+let HUMAN = player ? "X" : "O";
+let AI = player ? "O" : "X";
 const buttons = document.querySelectorAll(".btn");
 const end = document.querySelector("#end");
 
@@ -49,10 +50,114 @@ function clearBoard() {
 	player = true;
 	end.hidden = true;
 }
+
+function disableAll() {
+	buttons.forEach((button) => {
+		button.disabled = true;
+	});
+}
+
 buttons.forEach((button) => {
 	button.addEventListener("click", () => {
 		button.disabled = true;
 		let index = button.id.split("btn")[1];
 		board[Number(index[0])][Number(index[1])] = player ? "X" : "O";
+		if (COOP) {
+			piece = player ? "X" : "O";
+			player = !player;
+		} else {
+			aiTurn();
+		}
+		drawOnBoard();
+		if (gameOverAll(board)) {
+			disableAll();
+		}
 	});
 });
+
+function gameOver(state, player) {
+	let winState = [
+		[state[0][0], state[0][1], state[0][2]],
+		[state[1][0], state[1][1], state[1][2]],
+		[state[2][0], state[2][1], state[2][2]],
+		[state[0][0], state[1][0], state[2][0]],
+		[state[0][1], state[1][1], state[2][1]],
+		[state[0][2], state[1][2], state[2][2]],
+		[state[0][0], state[1][1], state[2][2]],
+		[state[2][0], state[1][1], state[0][2]],
+	];
+	for (let i = 0; i < winState.length; i++) {
+		if (
+			winState[i][0] == winState[i][1] &&
+			winState[i][1] == winState[i][2] &&
+			winState[i][0] == player
+		) {
+			return true;
+		}
+	}
+	return false;
+}
+function gameOverAll(state) {
+	return gameOver(state, HUMAN) || gameOver(state, AI);
+}
+
+function evaluate(state) {
+	if (gameOver(state, HUMAN)) {
+		return 1;
+	} else if (gameOver(state, AI)) {
+		return -1;
+	}
+	return 0;
+}
+
+function minimax(state, depth, player) {
+	let best;
+	let other;
+	if (player == "X") {
+		best = [-1, -1, -Infinity];
+		other = "O";
+	} else {
+		best = [-1, -1, Infinity];
+		other = "X";
+	}
+	if (depth == 0 || gameOverAll(state)) {
+		let score = evaluate(state);
+		return [-1, -1, score];
+	}
+	emptyPlaces(state).forEach((place) => {
+		let x = place[0];
+		let y = place[1];
+		state[x][y] = player;
+		let score = minimax(state, depth - 1, other);
+		state[x][y] = "";
+		score[0] = x;
+		score[1] = y;
+		if (player == "X") {
+			if (score[2] > best[2]) {
+				best = score;
+			}
+		} else {
+			if (score[2] < best[2]) {
+				best = score;
+			}
+		}
+	});
+	return best;
+}
+
+function aiTurn() {
+	let x, y;
+	let move;
+
+	if (emptyPlaces(board).length == 9) {
+		x = Math.trunc(Math.random() * 3);
+		y = Math.trunc(Math.random() * 3);
+	} else {
+		move = minimax(board, emptyPlaces(board).length, AI);
+		x = move[0];
+		y = move[1];
+	}
+	if (!(x < 0) || !(y < 0)) {
+		board[x][y] = AI;
+	}
+}
