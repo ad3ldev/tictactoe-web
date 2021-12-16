@@ -8,7 +8,18 @@
 	</head>
 	<body>
 		<main>
-			<button id="end" hidden></button>
+			<div class="start">
+				<h1>TicTacToe</h1>
+				<button id="single">Single Player</button>
+				<button id="coop">Mutli Player</button>
+			</div>
+			<div class="choice">
+				<h2>Difficulity</h2>
+				<button id="easy">Easy</button>
+				<button id="medium">Medium</button>
+				<button id="hard">Hard</button>
+				<button id="impossible">Impossible</button>
+			</div>
 			<div class="board">
 				<button id="btn00" class="btn"></button>
 				<button id="btn01" class="btn"></button>
@@ -20,6 +31,7 @@
 				<button id="btn21" class="btn"></button>
 				<button id="btn22" class="btn"></button>
 			</div>
+			<button id="end"></button>
 		</main>
 		<script type="module" src="src/index.js"></script>
 	</body>

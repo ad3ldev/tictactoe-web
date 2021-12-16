@@ -1,19 +1,88 @@
 import "./style.scss";
 
+let level;
 let COOP = false;
 let aiFirst = false;
-
-let player = true;
-let HUMAN = player ? "X" : "O";
-let AI = player ? "O" : "X";
-const buttons = document.querySelectorAll(".btn");
-const end = document.querySelector("#end");
 
 let board = [
 	["", "", ""],
 	["", "", ""],
 	["", "", ""],
 ];
+
+const levels = {
+	easy: 1,
+	medium: 3,
+	hard: 6,
+	impossible: 9,
+};
+
+let player = true;
+let HUMAN = player ? "X" : "O";
+let AI = player ? "O" : "X";
+const buttons = document.querySelectorAll(".btn");
+const end = document.querySelector("#end");
+const grid = document.querySelector(".board");
+const start = document.querySelector(".start");
+const choice = document.querySelector(".choice");
+
+const single = document.querySelector("#single");
+const multi = document.querySelector("#coop");
+
+single.addEventListener("click", () => {
+	COOP = false;
+	start.setAttribute("style", "display:none");
+	choice.setAttribute("style", "display: grid");
+});
+const easyBtn = document.querySelector("#easy");
+easyBtn.addEventListener("click", () => {
+	choice.setAttribute("style", "display:none");
+	grid.setAttribute("style", "display: grid");
+	level = levels.easy;
+});
+
+const mediumBtn = document.querySelector("#medium");
+mediumBtn.addEventListener("click", () => {
+	choice.setAttribute("style", "display:none");
+	grid.setAttribute("style", "display: grid");
+	level = levels.medium;
+});
+
+const hardBtn = document.querySelector("#hard");
+hardBtn.addEventListener("click", () => {
+	choice.setAttribute("style", "display:none");
+	grid.setAttribute("style", "display: grid");
+	level = levels.hard;
+});
+
+const impossibleBtn = document.querySelector("#impossible");
+impossibleBtn.addEventListener("click", () => {
+	choice.setAttribute("style", "display:none");
+	grid.setAttribute("style", "display: grid");
+	level = levels.impossible;
+});
+
+multi.addEventListener("click", () => {
+	COOP = true;
+	start.setAttribute("style", "display:none");
+	grid.setAttribute("style", "display: grid");
+});
+
+end.addEventListener("click", () => {
+	board = [
+		["", "", ""],
+		["", "", ""],
+		["", "", ""],
+	];
+	buttons.forEach((button) => {
+		button.innerHTML = "";
+		button.disabled = false;
+	});
+	grid.setAttribute("style", "display: none");
+	start.setAttribute("style", "display:grid");
+	end.setAttribute("style", "display: none");
+	end.innerHTML = "";
+});
 
 function emptyPlaces(state) {
 	let places = [];
@@ -57,6 +126,16 @@ buttons.forEach((button) => {
 		drawOnBoard();
 		if (gameOverAll(board)) {
 			disableAll();
+			if (evaluate(board) > 0) {
+				end.innerHTML = `${HUMAN} WON`;
+			} else {
+				end.innerHTML = `${AI} WON`;
+			}
+			end.setAttribute("style", "display:grid");
+		}
+		if (emptyPlaces(board).length == 0) {
+			end.setAttribute("style", "display:grid");
+			end.innerHTML = "DRAW";
 		}
 	});
 });
@@ -139,7 +218,11 @@ function aiTurn() {
 		x = Math.trunc(Math.random() * 3);
 		y = Math.trunc(Math.random() * 3);
 	} else {
-		move = minimax(board, emptyPlaces(board).length, AI);
+		let depth = emptyPlaces(board).length;
+		if (depth > level) {
+			depth = level;
+		}
+		move = minimax(board, depth, AI);
 		x = move[0];
 		y = move[1];
 	}

@@ -14,8 +14,7 @@ main {
 	align-items: center;
 }
 .board {
-	position: relative;
-	display: grid;
+	display: none;
 	grid-template-columns: repeat(3, 1fr);
 	aspect-ratio: 1/1;
 	.btn {
@@ -25,7 +24,33 @@ main {
 	}
 }
 
+.start {
+	display: grid;
+	place-items: center;
+	gap: 1rem;
+	grid-template-columns: repeat(2, 1fr);
+}
+.start h1 {
+	grid-column: span 2;
+}
+.start button {
+	padding: 1rem;
+}
+.choice {
+	display: none;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1rem;
+	place-items: center;
+}
+.choice h2 {
+	grid-column: span 4;
+}
+.choice button {
+	padding: 1em;
+}
+
 #end {
+	display: none;
 	padding: 1rem;
 	font-size: clamp(16px, 5vmin, 100vw);
 }

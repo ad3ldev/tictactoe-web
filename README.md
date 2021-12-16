@@ -4,7 +4,7 @@
 
 # TicTacToe
 
-A basic TicTacToe game.
+A basic TicTacToe game, 2 players or against an impossible to win against AI.
 
 ## Technologies
 
@@ -13,10 +13,12 @@ For the CSS, I am using Sass because it extends the functionalities and capabili
 
 ## Algorithms
 
-Loops to check which player won
+MiniMax to make the AI choose which move will it choose.
+
+Loops to check which player won.
 
 ---
 
 ### What comes now?
 
-I wanna change the look and make the win button become a pop-up
+Better UI
