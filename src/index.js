@@ -132,8 +132,7 @@ buttons.forEach((button) => {
 				end.innerHTML = `${AI} WON`;
 			}
 			end.setAttribute("style", "display:grid");
-		}
-		if (emptyPlaces(board).length == 0) {
+		} else if (emptyPlaces(board).length == 0) {
 			end.setAttribute("style", "display:grid");
 			end.innerHTML = "DRAW";
 		}
