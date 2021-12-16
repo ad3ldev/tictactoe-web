@@ -14,6 +14,7 @@ main {
 	align-items: center;
 }
 .board {
+	position: relative;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	aspect-ratio: 1/1;
@@ -25,5 +26,6 @@ main {
 }
 
 #end {
-	font-size: clamp(16px, 5vmin, 100rem);
+	padding: 1rem;
+	font-size: clamp(16px, 5vmin, 100vw);
 }

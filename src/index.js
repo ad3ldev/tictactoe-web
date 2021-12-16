@@ -1,8 +1,10 @@
 import "./style.scss";
 
+let COOP = false;
+
+let player = true;
 let HUMAN = 1;
 let AI = -1;
-let player = true;
 const buttons = document.querySelectorAll(".btn");
 const end = document.querySelector("#end");
 
