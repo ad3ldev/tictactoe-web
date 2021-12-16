@@ -1,8 +1,8 @@
 import "./style.scss";
 
 let COOP = false;
+let aiFirst = false;
 
-let piece;
 let player = true;
 let HUMAN = player ? "X" : "O";
 let AI = player ? "O" : "X";
@@ -37,20 +37,6 @@ function drawOnBoard() {
 	});
 }
 
-function clearBoard() {
-	board = [
-		["", "", ""],
-		["", "", ""],
-		["", "", ""],
-	];
-	buttons.forEach((button) => {
-		button.disabled = false;
-		button.innerHTML = "";
-	});
-	player = true;
-	end.hidden = true;
-}
-
 function disableAll() {
 	buttons.forEach((button) => {
 		button.disabled = true;
@@ -61,11 +47,11 @@ buttons.forEach((button) => {
 	button.addEventListener("click", () => {
 		button.disabled = true;
 		let index = button.id.split("btn")[1];
-		board[Number(index[0])][Number(index[1])] = player ? "X" : "O";
 		if (COOP) {
-			piece = player ? "X" : "O";
+			board[Number(index[0])][Number(index[1])] = player ? "X" : "O";
 			player = !player;
 		} else {
+			board[Number(index[0])][Number(index[1])] = HUMAN;
 			aiTurn();
 		}
 		drawOnBoard();
@@ -113,12 +99,12 @@ function evaluate(state) {
 function minimax(state, depth, player) {
 	let best;
 	let other;
-	if (player == "X") {
+	if (player == HUMAN) {
 		best = [-1, -1, -Infinity];
-		other = "O";
+		other = AI;
 	} else {
 		best = [-1, -1, Infinity];
-		other = "X";
+		other = HUMAN;
 	}
 	if (depth == 0 || gameOverAll(state)) {
 		let score = evaluate(state);
@@ -132,7 +118,7 @@ function minimax(state, depth, player) {
 		state[x][y] = "";
 		score[0] = x;
 		score[1] = y;
-		if (player == "X") {
+		if (player == HUMAN) {
 			if (score[2] > best[2]) {
 				best = score;
 			}
@@ -160,4 +146,9 @@ function aiTurn() {
 	if (!(x < 0) || !(y < 0)) {
 		board[x][y] = AI;
 	}
+}
+
+if (aiFirst) {
+	aiTurn();
+	drawOnBoard();
 }
