@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/5bf4d368-d136-40aa-9bd8-70f535f4ead8/deploy-status)](https://app.netlify.com/sites/aadelafattah-tictactoe-web/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5bf4d368-d136-40aa-9bd8-70f535f4ead8/deploy-status)](https://app.netlify.com/sites/aadela-tictactoe-web/deploys)
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/aadele)
 
