@@ -86,7 +86,7 @@ end.addEventListener("click", () => {
 
 
 const change_light = document.getElementById('change-light');
-var isLight =true; 
+let isLight =true; 
 
 change_light.addEventListener("click", ()=>{
 	if(isLight){
@@ -95,8 +95,8 @@ change_light.addEventListener("click", ()=>{
 		isLight=false;
 	}
 	else{
-		change_light.innerHTML= 'Light: On';
 		document.body.classList.remove('dark');
+		change_light.innerHTML= 'Light: On';
 		isLight=true;
 	}
 });
