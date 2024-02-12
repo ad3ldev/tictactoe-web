@@ -86,17 +86,19 @@ end.addEventListener("click", () => {
 
 
 const change_light = document.getElementById('change-light');
+const icon_light = document.getElementById('icon-light');
+
 let isLight =true; 
 
 change_light.addEventListener("click", ()=>{
 	if(isLight){
 		document.body.classList.add('dark');
-		change_light.innerHTML= 'Light: Off';
+		icon_light.style.filter='saturate(0)';
 		isLight=false;
 	}
 	else{
 		document.body.classList.remove('dark');
-		change_light.innerHTML= 'Light: On';
+		icon_light.style.filter='saturate(1)';
 		isLight=true;
 	}
 });
@@ -116,10 +118,12 @@ function emptyPlaces(state) {
 function drawOnBoard() {
 	buttons.forEach((button) => {
 		let place = button.id.split("btn")[1];
-		button.innerHTML = board[Number(place[0])][Number(place[1])];
-		if (button.innerHTML != "") {
+		let iconMark  = board[Number(place[0])][Number(place[1])];
+		if (iconMark != "") {
 			button.disabled = true;
 		}
+		
+		button.innerHTML = `<span style="color: ${iconMark == 'O' ? '#004eff': '#ffa200'}">${iconMark}</span>`;
 	});
 }
 
