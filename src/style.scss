@@ -6,6 +6,21 @@ html,
 body {
 	height: 100%;
 }
+
+body.dark{
+	background: #101010;
+	color:#ddd;
+}
+body.dark {
+	button{
+		background-color: #202020;
+		color:#909090;
+		border:2px solid #303030;
+		outline: none;
+		border-radius: 6px;
+	}
+}
+
 main {
 	height: 100%;
 	display: flex;
@@ -18,7 +33,7 @@ main {
 	grid-template-columns: repeat(3, 1fr);
 	aspect-ratio: 1/1;
 	.btn {
-		width: 30vmin;
+		width: 25vmin;
 		aspect-ratio: 1/1;
 		font-size: clamp(16px, 20vmin, 100rem);
 	}
@@ -53,4 +68,8 @@ main {
 	display: none;
 	padding: 1rem;
 	font-size: clamp(16px, 5vmin, 100vw);
+}
+
+#change-light{
+	padding: 4px 8px;	
 }

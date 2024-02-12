@@ -84,6 +84,23 @@ end.addEventListener("click", () => {
 	end.innerHTML = "";
 });
 
+
+const change_light = document.getElementById('change-light');
+var isLight =true; 
+
+change_light.addEventListener("click", ()=>{
+	if(isLight){
+		document.body.classList.add('dark');
+		change_light.innerHTML= 'Light: Off';
+		isLight=false;
+	}
+	else{
+		change_light.innerHTML= 'Light: On';
+		document.body.classList.remove('dark');
+		isLight=true;
+	}
+});
+
 function emptyPlaces(state) {
 	let places = [];
 	for (let x = 0; x < 3; x++) {
