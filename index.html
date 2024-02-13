@@ -9,31 +9,38 @@
 	<body>
 		<main>
 			<div class="start">
-				<h1>TicTacToe</h1>
-				<button id="single">Single Player</button>
-				<button id="coop">Mutli Player</button>
+				<div class="header">
+					<img src="src/icons/icon.png" width="60px" alt="Icon" />
+					<h1>TicTacToe</h1>
+				</div>
+				<div class="buttons">
+					<button class="btn-secundary" id="single">Single Player</button>
+					<button class="btn-secundary" id="coop">Mutli Player</button>
+				</div>
 			</div>
 			<div class="choice">
 				<h2>Difficulity</h2>
-				<button id="easy">Easy</button>
-				<button id="medium">Medium</button>
-				<button id="hard">Hard</button>
-				<button id="impossible">Impossible</button>
+				<button class="btn-secundary" id="easy">Easy</button>
+				<button class="btn-secundary" id="medium">Medium</button>
+				<button class="btn-secundary" id="hard">Hard</button>
+				<button class="btn-secundary" id="impossible">Impossible</button>
 			</div>
 			<div class="board">
-				<button id="btn00" class="btn"></button>
-				<button id="btn01" class="btn"></button>
-				<button id="btn02" class="btn"></button>
-				<button id="btn10" class="btn"></button>
-				<button id="btn11" class="btn"></button>
-				<button id="btn12" class="btn"></button>
-				<button id="btn20" class="btn"></button>
-				<button id="btn21" class="btn"></button>
+				<button  id="btn00" class="btn"></button>
+				<button  id="btn01" class="btn"></button>
+				<button  id="btn02" class="btn"></button>
+				<button  id="btn10" class="btn"></button>
+				<button  id="btn11" class="btn"></button>
+				<button  id="btn12" class="btn"></button>
+				<button  id="btn20" class="btn"></button>
+				<button  id="btn21" class="btn"></button>
 				<button id="btn22" class="btn"></button>
 			</div>
-			<button id="end"></button>
+			<button class="btn-secundary" id="end"></button>
 			<!-- dark switch -->
-			<button id="change-light">Light: On</button>
+			<button class="btn-secundary" id="change-light">Light: 
+				<img id="icon-light" src="src/icons/light.png" width="18px"  alt="Lamp Icon">
+			</button>
 		</main>
 		<script type="module" src="src/index.js"></script>
 	</body>
